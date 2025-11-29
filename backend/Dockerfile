@@ -1,17 +1,20 @@
+# Base image
 FROM node:18
 
+# Set working directory
 WORKDIR /usr/src/app
 
-# Install dependencies
+# Copy package files
 COPY package*.json ./
+
+# Install dependencies
 RUN npm install
 
-# Copy backend source code
-COPY ./source ./source
+# Copy full backend source
+COPY . .
 
-
-
-ENV NODE_ENV=production
+# Expose backend port
 EXPOSE 5000
 
+# Start server
 CMD ["node", "source/server.js"]
