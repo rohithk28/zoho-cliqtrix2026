@@ -9,8 +9,7 @@ RUN npm install
 # Copy backend source code
 COPY ./source ./source
 
-# Copy database migrations folder
-COPY ./database ./database
+
 
 ENV NODE_ENV=production
 EXPOSE 5000
