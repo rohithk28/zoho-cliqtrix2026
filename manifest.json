@@ -1,0 +1,49 @@
+{
+  "name": "cliqtrix_extension",
+  "display_name": "Cliqtrix Extension Base",
+  "identifier": "com.cliqtrix.extension",
+  "description": "Base setup for Cliqtrix extension",
+  "version": "1.0.0",
+  "author": "Rohith",
+  "homepage_url": "",
+  "logo": "assets/icon.png",
+
+  "platforms": ["cliq"],
+
+  "widgets": [
+    {
+      "name": "CliqBaseSettings",
+      "display_name": "CliqBase Settings",
+      "file": "widgets/applet.json"
+    }
+  ],
+
+  "scopes": {
+    "bot": {},
+    "commands": {},
+    "functions": {}
+  },
+
+  "commands": [
+    {
+      "name": "hello",
+      "display_name": "Hello Command",
+      "description": "Simple test command to validate extension base",
+      "type": "slash",
+      "function": {
+        "name": "helloCommandHandler"
+      }
+    }
+  ],
+
+  "functions": [
+    {
+      "name": "initHandler",
+      "file": "functions/init_handler.deluge"
+    },
+    {
+      "name": "helloCommandHandler",
+      "file": "commands/hello_command.deluge"
+    }
+  ]
+}

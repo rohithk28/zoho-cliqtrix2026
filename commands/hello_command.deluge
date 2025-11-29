@@ -1,0 +1,3 @@
+response = Map();
+response.put("text", "👋 Hello! The Cliq Extension Base is working successfully.");
+return response;

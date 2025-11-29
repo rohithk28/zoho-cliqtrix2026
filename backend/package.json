@@ -1,0 +1,26 @@
+{
+  "name": "cliq-backend",
+  "version": "1.0.0",
+  "main": "source/server.js",
+  "type": "module",
+  "scripts": {
+    "dev": "nodemon source/server.js",
+    "start": "node source/server.js"
+  },
+  "dependencies": {
+    "axios": "^1.13.2",
+    "cors": "^2.8.5",
+    "dotenv": "^16.6.1",
+    "express": "^4.21.2",
+    "pg": "^8.16.3",
+    "pg-hstore": "^2.3.4",
+    "qs": "^6.14.0"
+  },
+  "devDependencies": {
+    "nodemon": "^3.1.11"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "description": ""
+}

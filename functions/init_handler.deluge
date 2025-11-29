@@ -1,0 +1,2 @@
+info "Cliqtrix Extension Base Loaded Successfully!";
+return {"status": "success", "message": "Extension initialized"};

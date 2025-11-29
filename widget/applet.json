@@ -1,0 +1,98 @@
+{
+  "name": "CliqBase Settings",
+  "type": "applet",
+  "version": "1.0",
+  "ui": {
+    "type": "page",
+    "title": "CliqBase Settings",
+    "components": [
+      {
+        "type": "text",
+        "text": "User Preferences",
+        "style": { "fontWeight": "bold", "marginBottom": "10px" }
+      },
+
+      {
+        "type": "dropdown",
+        "id": "themeSelector",
+        "label": "Theme",
+        "placeholder": "Select theme",
+        "options": [
+          { "label": "Light", "value": "light" },
+          { "label": "Dark", "value": "dark" }
+        ]
+      },
+
+      {
+        "type": "dropdown",
+        "id": "layoutSelector",
+        "label": "Layout",
+        "placeholder": "Choose layout",
+        "options": [
+          { "label": "Standard", "value": "standard" },
+          { "label": "Compact", "value": "compact" }
+        ]
+      },
+
+      {
+        "type": "switch",
+        "id": "notificationSwitch",
+        "label": "Enable Notifications"
+      },
+
+      {
+        "type": "button",
+        "label": "Save Settings",
+        "id": "saveButton",
+        "style": { "marginTop": "15px", "backgroundColor": "#4A90E2", "color": "white" }
+      }
+    ]
+  },
+
+  "events": {
+    "onLoad": {
+      "actions": [
+        {
+          "type": "applet.fetch",
+          "name": "loadConfig",
+          "url": "https://delilah-iatrochemical-preprudently.ngrok-free.dev/api/widget/config?user_id=$USER_ID",
+          "method": "GET"
+        },
+        {
+          "type": "applet.setValues",
+          "values": {
+            "themeSelector": "{{loadConfig.config.theme}}",
+            "layoutSelector": "{{loadConfig.config.layout}}",
+            "notificationSwitch": "{{loadConfig.config.notifications}}"
+          }
+        }
+      ]
+    },
+
+    "onClick": {
+      "saveButton": [
+        {
+          "type": "applet.fetch",
+          "name": "saveConfig",
+          "url": "https://delilah-iatrochemical-preprudently.ngrok-free.dev/api/widget/config",
+          "method": "POST",
+          "body": {
+            "user_id": "$USER_ID",
+            "config": {
+              "theme": "{{themeSelector}}",
+              "layout": "{{layoutSelector}}",
+              "notifications": "{{notificationSwitch}}"
+            }
+          }
+        },
+        {
+          "type": "toast",
+          "msg": "Settings updated successfully!"
+        },
+        {
+          "type": "applet.refresh"
+        }
+      ]
+    }
+  }
+}

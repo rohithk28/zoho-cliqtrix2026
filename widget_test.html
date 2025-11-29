@@ -1,0 +1,62 @@
+<!doctype html>
+<html>
+<head><meta charset="utf-8"><title>Widget Local Test</title></head>
+<body>
+  <h2>CliqBase Settings — Local Simulator</h2>
+  <button id="loadBtn">Load Config</button><br><br>
+
+  Theme:
+  <select id="theme">
+    <option value="light">light</option>
+    <option value="dark">dark</option>
+  </select>
+  <br/><br/>
+
+  Layout:
+  <select id="layout">
+    <option value="standard">standard</option>
+    <option value="compact">compact</option>
+  </select>
+  <br/><br/>
+
+  Notifications: <input type="checkbox" id="notifications"><br/><br/>
+
+  <button id="saveBtn">Save Settings</button>
+
+  <pre id="log"></pre>
+
+<script>
+const API_BASE = "http://localhost:5000";
+const USER_ID = "cliq-user-1";
+
+document.getElementById("loadBtn").onclick = async () => {
+  const res = await fetch(`${API_BASE}/api/widget/config?user_id=${USER_ID}`);
+  const data = await res.json();
+  document.getElementById("theme").value = data.config?.theme || "light";
+  document.getElementById("layout").value = data.config?.layout || "standard";
+  document.getElementById("notifications").checked = data.config?.notifications || false;
+  document.getElementById("log").innerText = JSON.stringify(data, null, 2);
+}
+
+document.getElementById("saveBtn").onclick = async () => {
+  const payload = {
+    user_id: USER_ID,
+    config: {
+      theme: document.getElementById("theme").value,
+      layout: document.getElementById("layout").value,
+      notifications: document.getElementById("notifications").checked
+    }
+  };
+
+  const res = await fetch(`${API_BASE}/api/widget/config`, {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify(payload)
+  });
+
+  const data = await res.json();
+  document.getElementById("log").innerText = JSON.stringify(data, null, 2);
+};
+</script>
+</body>
+</html>
