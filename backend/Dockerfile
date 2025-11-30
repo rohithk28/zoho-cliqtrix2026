@@ -10,6 +10,8 @@ COPY package*.json ./
 # Install dependencies
 RUN npm install
 
+ENV NODE_ENV=production
+
 # Copy full backend source
 COPY . .
 
