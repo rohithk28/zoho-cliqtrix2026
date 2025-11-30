@@ -2,6 +2,7 @@
   "name": "CliqBase Settings",
   "type": "applet",
   "version": "1.0",
+
   "ui": {
     "type": "page",
     "title": "CliqBase Settings",
@@ -11,7 +12,6 @@
         "text": "User Preferences",
         "style": { "fontWeight": "bold", "marginBottom": "10px" }
       },
-
       {
         "type": "dropdown",
         "id": "themeSelector",
@@ -22,7 +22,6 @@
           { "label": "Dark", "value": "dark" }
         ]
       },
-
       {
         "type": "dropdown",
         "id": "layoutSelector",
@@ -33,18 +32,20 @@
           { "label": "Compact", "value": "compact" }
         ]
       },
-
       {
         "type": "switch",
         "id": "notificationSwitch",
         "label": "Enable Notifications"
       },
-
       {
         "type": "button",
         "label": "Save Settings",
         "id": "saveButton",
-        "style": { "marginTop": "15px", "backgroundColor": "#4A90E2", "color": "white" }
+        "style": {
+          "marginTop": "15px",
+          "backgroundColor": "#4A90E2",
+          "color": "white"
+        }
       }
     ]
   },
@@ -55,7 +56,7 @@
         {
           "type": "applet.fetch",
           "name": "loadConfig",
-          "url": "https://delilah-iatrochemical-preprudently.ngrok-free.dev/api/widget/config?user_id=$USER_ID",
+          "url": "https://zoho-cliqtrix2026.onrender.com/api/widget/config?user_id=$USER_ID",
           "method": "GET"
         },
         {
@@ -74,7 +75,7 @@
         {
           "type": "applet.fetch",
           "name": "saveConfig",
-          "url": "https://delilah-iatrochemical-preprudently.ngrok-free.dev/api/widget/config",
+          "url": "https://zoho-cliqtrix2026.onrender.com/api/widget/config",
           "method": "POST",
           "body": {
             "user_id": "$USER_ID",
